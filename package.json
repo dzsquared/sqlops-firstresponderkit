@@ -1,0 +1,49 @@
+{
+    "name": "sosblitz",
+    "displayName": "sosblitz",
+    "description": "Current Versions of the sp_blitz Scripts",
+    "version": "0.0.1",
+    "publisher": "drewsk",
+    "engines": {
+        "vscode": "^1.25.0",
+        "sqlops": "*"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sp_blitz",
+        "onCommand:extension.showCurrentConnection"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sp_blitz",
+                "title": "Import sp_blitz"
+            },
+            {
+                "command": "extension.showCurrentConnection",
+                "title": "Show Current Connection"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install && node ./node_modules/sqlops/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "sqlops": "github:anthonydresser/sqlops-extension-sqlops",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "request": "^2.87.0",
+        "request-promise-native": "^1.0.5"
+    }
+}
