@@ -1,10 +1,3 @@
-**Note:**
-If you want to build your extension, run:
-
-```
-npm run compile
-```
-
 # SQL Operations Studio - First Responder Kit Extension 
 
 This extension provides immediate access to the current First Responder Kit scripts and introductory execution suggestions. (All credit due to http://firstresponderkit.org/)

@@ -11,6 +11,10 @@
     "categories": [
         "Other"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dzsquared/sqlops-firstresponderkit.git"
+    },
     "activationEvents": [
         "onCommand:extension.sp_blitz",
         "onCommand:extension.run_sp_blitz",
