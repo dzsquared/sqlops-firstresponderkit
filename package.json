@@ -1,8 +1,8 @@
 {
-    "name": "sosblitz",
-    "displayName": "sosblitz",
+    "name": "firstresponderkit",
+    "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
@@ -13,18 +13,53 @@
     ],
     "activationEvents": [
         "onCommand:extension.sp_blitz",
-        "onCommand:extension.showCurrentConnection"
+        "onCommand:extension.run_sp_blitz",
+        "onCommand:extension.sp_blitzwho",
+        "onCommand:extension.sp_blitzindex",
+        "onCommand:extension.run_sp_blitzindex",
+        "onCommand:extension.sp_blitzcache",
+        "onCommand:extension.run_sp_blitzcache",
+        "onCommand:extension.sp_blitzfirst",
+        "onCommand:extension.run_sp_blitzfirst"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
                 "command": "extension.sp_blitz",
-                "title": "Import sp_blitz"
+                "title": "First Responder Kit: Import sp_blitz"
             },
             {
-                "command": "extension.showCurrentConnection",
-                "title": "Show Current Connection"
+                "command": "extension.run_sp_blitz",
+                "title": "First Responder Kit: Run sp_blitz"
+            },
+            {
+                "command": "extension.sp_blitzindex",
+                "title": "First Responder Kit: Import sp_blitzindex"
+            },
+            {
+                "command": "extension.run_sp_blitzindex",
+                "title": "First Responder Kit: Run sp_blitzindex"
+            },
+            {
+                "command": "extension.sp_blitzwho",
+                "title": "First Responder Kit: Import sp_blitzwho"
+            },
+            {
+                "command": "extension.sp_blitzfirst",
+                "title": "First Responder Kit: Import sp_blitzfirst"
+            },
+            {
+                "command": "extension.run_sp_blitzfirst",
+                "title": "First Responder Kit: Run sp_blitzfirst"
+            },
+            {
+                "command": "extension.sp_blitzcache",
+                "title": "First Responder Kit: Import sp_blitzcache"
+            },
+            {
+                "command": "extension.run_sp_blitzcache",
+                "title": "First Responder Kit: Run sp_blitzcache"
             }
         ]
     },

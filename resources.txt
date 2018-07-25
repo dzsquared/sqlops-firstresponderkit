@@ -1,0 +1,11 @@
+http://www.chrisstead.com/archives/1082/visual-studio-code-extensions-editing-the-document/
+
+https://code.visualstudio.com/docs/extensionAPI/vscode-api#_commands
+
+https://stackoverflow.com/questions/45046552/texteditoredit-replace-is-async-how-to-execute-code-when-it-is-finished
+
+https://stackoverflow.com/questions/45748476/http-request-in-typescript
+
+https://github.com/egamma/vscode-extension-async/blob/master/src/extension.ts
+
+https://github.com/patbenatar/vscode-advanced-new-file/blob/master/src/extension.ts
