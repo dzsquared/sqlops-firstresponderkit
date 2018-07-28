@@ -11,12 +11,12 @@ The current release is available to download as a .vsix file and can be installe
 Import a script from the First Responder Kit to a new editor by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Import <some script>`
 
 
-![Import a Script](images/frk_import.gif)
+![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_import.gif)
 
 ### Run
 Already have the current scripts loaded to the database?  Great! Take the shortcut to execution by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Run <some script>`
 
-![Execute](images/frk_run.gif)
+![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_run.gif)
 
 ## Requirements
 
