@@ -5,7 +5,7 @@ import * as request from 'request-promise-native';
 
 
 export function activate(context: vscode.ExtensionContext) {
-    const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/dev/";
+    const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
 
     //importing the full spblitz script
     var getblitz = async () => {
