@@ -35,6 +35,10 @@ Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
 
+### 0.2.0
+
+- Script import and run commands automatically connect to current context
+
 ### 0.1.1
 
 - Corrects base URL for scripts from dev to master branch of First Responder Kit
