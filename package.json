@@ -65,6 +65,12 @@
                 "command": "extension.run_sp_blitzcache",
                 "title": "First Responder Kit: Run sp_blitzcache"
             }
+        ],
+        "snippets": [
+            {
+                "language": "sql",
+                "path": "./snippets/snippets.json"
+            }
         ]
     },
     "scripts": {

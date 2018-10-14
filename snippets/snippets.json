@@ -1,0 +1,72 @@
+{
+    "FRK spBlitz": {
+        "prefix": "sqlFRKspBlitz",
+        "body": [
+            "EXEC [dbo].[sp_Blitz]",
+            "@CheckUserDatabaseObjects = 1 ,",
+            "@CheckProcedureCache = 0 ,",
+            "@OutputType = 'TABLE' ,",
+            "@OutputProcedureCache = 0 ,",
+            "@CheckProcedureCacheFilter = NULL,",
+            "@CheckServerInfo = 1",
+            "-- uncomment the following line to write results to an output table",
+            "--, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'"
+        ],
+        "description": "sp_blitz execution script"
+    },
+    "FRK spBlitzIndex": {
+        "prefix": "sqlFRKspBlitxIndex",
+        "body": [
+            "EXEC [dbo].[sp_BlitzIndex]",
+            "@CheckUserDatabaseObjects = 1 ,",
+            "@CheckProcedureCache = 0 ,",
+            "@OutputType = 'TABLE' ,",
+            "@OutputProcedureCache = 0 ,",
+            "@CheckProcedureCacheFilter = NULL,",
+            "@CheckServerInfo = 1",
+            "-- uncomment the following line to write results to an output table",
+            "--, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'"
+        ],
+        "description": "sp_blitzindex execution script"
+    },
+    "FRK spBlitzCache": {
+        "prefix": "sqlFRKspBlitzCache",
+        "body": [
+            "EXEC [dbo].[sp_BlitzCache]",
+            "@SortOrder = 'reads',",
+            "    -- CPU, executions, xpm, recent compilations, memory grant, writes, all",
+            "@Top = 10"
+        ],
+        "description": "sp_blitzcache execution script"
+    },
+    "FRK spBlitzFirst": {
+        "prefix": "sqlFRKspBlitzFirst",
+        "body": [
+            "EXEC [dbo].[sp_BlitzFirst]",
+            "@Seconds = 5,",
+            "@ShowSleepingSPIDs = 0,",
+            "@ExpertMode = 0 --1 will also run sp_BlitzWho"
+        ],
+        "description": "sp_blitzfirst execution script"
+    },
+    "Create Table snippet":{
+        "prefix": "sqlCreateTable2",
+        "body": [
+        "-- Create a new table called '${1:TableName}' in schema '${2:SchemaName}'",
+        "-- Drop the table if it already exists",
+        "IF OBJECT_ID('$2.$1', 'U') IS NOT NULL",
+        "DROP TABLE $2.$1",
+        "GO",
+        "-- Create the table in the specified schema",
+        "CREATE TABLE $2.$1",
+        "(",
+        "   $1Id INT NOT NULL PRIMARY KEY, -- primary key column",
+        "   Column1 [NVARCHAR](50) NOT NULL,",
+        "   Column2 [NVARCHAR](50) NOT NULL",
+        "   -- specify more columns here",
+        ");",
+        "GO"
+        ],
+       "description": "User-defined snippet example 2"
+       }
+}
