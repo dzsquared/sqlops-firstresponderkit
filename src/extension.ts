@@ -97,14 +97,10 @@ export function activate(context: vscode.ExtensionContext) {
         console.log('Preparing sample run script.');
         let fileName = "exec_sp_blitzindex.sql";
         const scriptText = `EXEC [dbo].[sp_BlitzIndex]
-        @CheckUserDatabaseObjects = 1 ,
-        @CheckProcedureCache = 0 ,
-        @OutputType = 'TABLE' ,
-        @OutputProcedureCache = 0 ,
-        @CheckProcedureCacheFilter = NULL,
-        @CheckServerInfo = 1
-        -- uncomment the following line to write results to an output table
-        --, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'`;
+        @DatabaseName = '',
+        --@TableName = '',
+         @Mode = 4
+         --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
         await placescript(fileName, scriptText);
     };
     var disposable_runspblitzindex = vscode.commands.registerCommand('extension.run_sp_blitzindex', runspblitzindex);

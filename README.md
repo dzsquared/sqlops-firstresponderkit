@@ -3,7 +3,7 @@
 This extension provides immediate access to the current First Responder Kit scripts and introductory execution suggestions. (All credit due to http://firstresponderkit.org/)
 
 ## Installation
-The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.2.0/firstresponderkit-0.2.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
+The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.3.0/firstresponderkit-0.3.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
 
 
 ## Features
@@ -34,6 +34,11 @@ None yet.
 Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
+
+### 0.3.0
+
+- Adds code snippets for execute scripts
+- Corrects sp_blitzindex execute script
 
 ### 0.2.0
 
