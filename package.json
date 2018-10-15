@@ -2,7 +2,7 @@
     "name": "firstresponderkit",
     "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
