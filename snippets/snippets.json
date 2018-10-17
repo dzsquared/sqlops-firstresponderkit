@@ -15,12 +15,12 @@
         "description": "sp_blitz execution script"
     },
     "FRK spBlitzIndex": {
-        "prefix": "sqlFRKspBlitxIndex",
+        "prefix": "sqlFRKspBlitzIndex",
         "body": [
             "EXEC [dbo].[sp_BlitzIndex]",
            "@DatabaseName = '${1:DatabaseName}',",
-           "--@TableName = '${2:TableName}',",
-            "@Mode = 4",
+           "--@TableName = '${2:TableName}'",
+            "--@Mode = 4",
             "--0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details"
         ],
         "description": "sp_blitzindex execution script"
