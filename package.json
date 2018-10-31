@@ -71,7 +71,16 @@
                 "language": "sql",
                 "path": "./snippets/snippets.json"
             }
-        ]
+        ],
+        "menus": {
+            "objectExplorer/item/context": [
+              {
+                "command": "flatFileImport.start",
+                "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+                "group": "import"
+              }
+            ]
+          }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
