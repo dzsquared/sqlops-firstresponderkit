@@ -2,7 +2,7 @@
     "name": "firstresponderkit",
     "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
@@ -24,7 +24,8 @@
         "onCommand:extension.sp_blitzcache",
         "onCommand:extension.run_sp_blitzcache",
         "onCommand:extension.sp_blitzfirst",
-        "onCommand:extension.run_sp_blitzfirst"
+        "onCommand:extension.run_sp_blitzfirst",
+        "*"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -71,7 +72,21 @@
                 "language": "sql",
                 "path": "./snippets/snippets.json"
             }
-        ]
+        ],
+        "menus": {
+            "objectExplorer/item/context": [
+              {
+                "command": "extension.run_sp_blitzindex",
+                "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+                "group": "FRK"
+              },
+              {
+                "command": "extension.run_sp_blitzindex",
+                "when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
+                "group": "FRK"
+              }
+            ]
+          }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",

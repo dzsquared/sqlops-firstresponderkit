@@ -3,7 +3,8 @@ import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
 import * as sqlops from 'sqlops';
 import { error } from 'util';
-
+import {placeScript} from './placescript';
+import {BlitzIndex} from './blitzindex';
 
 export function activate(context: vscode.ExtensionContext) {
     const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
@@ -16,7 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
         };
         console.log('Bringing in the first responder kit from the mothership.');
         const scriptText = await request.get(options);
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_spblitz = vscode.commands.registerCommand('extension.sp_blitz', getblitz);
     context.subscriptions.push(disposable_spblitz);
@@ -29,7 +31,8 @@ export function activate(context: vscode.ExtensionContext) {
         };
         console.log('Bringing in the first responder kit from the mothership.');
         const scriptText = await request.get(options);
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_spblitzcache = vscode.commands.registerCommand('extension.sp_blitzcache', getblitzcache);
     context.subscriptions.push(disposable_spblitzcache);
@@ -42,7 +45,8 @@ export function activate(context: vscode.ExtensionContext) {
         };
         console.log('Bringing in the first responder kit from the mothership.');
         const scriptText = await request.get(options);
-        await placescript(fileName, scriptText);        
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);   
     };
     var disposable_spblitzfirst = vscode.commands.registerCommand('extension.sp_blitzfirst', getblitzfirst);
     context.subscriptions.push(disposable_spblitzfirst);
@@ -55,7 +59,8 @@ export function activate(context: vscode.ExtensionContext) {
         };
         console.log('Bringing in the first responder kit from the mothership.');
         const scriptText = await request.get(options);
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_spblitzwho = vscode.commands.registerCommand('extension.sp_blitzwho', getblitzwho);
     context.subscriptions.push(disposable_spblitzwho);
@@ -72,9 +77,13 @@ export function activate(context: vscode.ExtensionContext) {
         @CheckProcedureCacheFilter = NULL,
         @CheckServerInfo = 1
         -- uncomment the following line to write results to an output table
-        --, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'`;
+        --, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'
+        
+        -- for more info: https://www.brentozar.com/blitz/
+        `;
         var setting: vscode.Uri = vscode.Uri.parse("untitled:" + fileName);
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_runspblitz = vscode.commands.registerCommand('extension.run_sp_blitz', runspblitz);
     context.subscriptions.push(disposable_runspblitz);
@@ -87,21 +96,61 @@ export function activate(context: vscode.ExtensionContext) {
         };
         console.log('Bringing in the first responder kit from the mothership.');
         const scriptText = await request.get(options);
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_spblitzindex = vscode.commands.registerCommand('extension.sp_blitzindex', getblitzindex);
     context.subscriptions.push(disposable_spblitzindex);
     
     //creating the quickrun script
-    var runspblitzindex = async () => {
+    var runspblitzindex = async (context?: sqlops.ObjectExplorerContext) => {
         console.log('Preparing sample run script.');
         let fileName = "exec_sp_blitzindex.sql";
-        const scriptText = `EXEC [dbo].[sp_BlitzIndex]
-        @DatabaseName = '',
-        --@TableName = '',
-         @Mode = 4
-         --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
-        await placescript(fileName, scriptText);
+        let scriptText = '';
+        if (context) {
+            let scriptType = context.nodeInfo.nodeType;
+            fileName = context.nodeInfo.label + '-' + fileName;
+            var nodeBreakdown = context.nodeInfo.nodePath.split("/");
+            let dbName = nodeBreakdown[2];
+            switch (scriptType) {
+                case "Database": {
+                    scriptText = `EXEC [dbo].[sp_BlitzIndex]
+                        @DatabaseName = '${dbName}',
+                        --@TableName = '',
+                        @Mode = 4
+                        --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
+                    break;
+                }
+                case "Table": {
+                    var tblParts = context.nodeInfo.label.split(".");
+                    let tblName = tblParts[1];
+                    scriptText = `EXEC [dbo].[sp_BlitzIndex]
+                        @DatabaseName = '${dbName}',
+                        @TableName = '${tblName}'
+                        `;
+                    break;
+                }
+                default: {
+                    scriptText = `EXEC [dbo].[sp_BlitzIndex]
+                        @DatabaseName = '',
+                        --@TableName = '',
+                        @Mode = 4
+                        --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
+                    break;
+                }
+            }
+        } else {
+            scriptText = `EXEC [dbo].[sp_BlitzIndex]
+                @DatabaseName = '',
+                --@TableName = '',
+                @Mode = 4
+                --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
+        }
+        scriptText += `
+        -- for more info: https://www.brentozar.com/blitzindex/
+        `;
+        new placeScript().placescript(fileName,scriptText);
+        
     };
     var disposable_runspblitzindex = vscode.commands.registerCommand('extension.run_sp_blitzindex', runspblitzindex);
     context.subscriptions.push(disposable_runspblitzindex);
@@ -114,8 +163,11 @@ export function activate(context: vscode.ExtensionContext) {
         @SortOrder = 'reads',
             -- CPU, executions, xpm, recent compilations, memory grant, writes, all
         @Top = 10
+
+        -- for more info: https://www.brentozar.com/blitzcache/
         `;
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_runspblitzcache = vscode.commands.registerCommand('extension.run_sp_blitzcache',runspblitzcache)
     context.subscriptions.push(disposable_runspblitzcache);
@@ -128,33 +180,17 @@ export function activate(context: vscode.ExtensionContext) {
         @Seconds = 5,
         @ShowSleepingSPIDs = 0,
         @ExpertMode = 0 --1 will also run sp_BlitzWho
+
+        -- for more info: https://www.brentozar.com/askbrent/
         `;
-        await placescript(fileName, scriptText);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
     };
     var disposable_runspblitzfirst = vscode.commands.registerCommand('extension.run_sp_blitzfirst',runspblitzfirst);
     context.subscriptions.push(disposable_runspblitzfirst);
 
-
-
-    // places scriptText into fileName editor with current connection
-    async function placescript(fileName, scriptText) {
-        var setting: vscode.Uri = vscode.Uri.parse("untitled:" + fileName);
-        try {
-            let connection = await sqlops.connection.getCurrentConnection();
-            let doc = await vscode.workspace.openTextDocument(setting);
-            let editor = await vscode.window.showTextDocument(doc, 1, false);
-            editor.edit(edit => {
-                edit.insert(new vscode.Position(0, 0), scriptText);
-            });
-            if (connection) {
-                await sqlops.queryeditor.connect(doc.uri.toString(), connection.connectionId);
-            }
-        } catch (err) {
-            vscode.window.showErrorMessage(err);
-        }
-    }
-
 }
+
 
 // this method is called when your extension is deactivated
 export function deactivate() {
