@@ -25,7 +25,6 @@
         "onCommand:extension.run_sp_blitzcache",
         "onCommand:extension.sp_blitzfirst",
         "onCommand:extension.run_sp_blitzfirst",
-        "onCommand:extension.testmenus",
         "*"
     ],
     "main": "./out/extension",
@@ -66,10 +65,6 @@
             {
                 "command": "extension.run_sp_blitzcache",
                 "title": "First Responder Kit: Run sp_blitzcache"
-            },
-            {
-                "command": "extension.testmenus",
-                "title": "First Responder Kit: Test Menus"
             }
         ],
         "snippets": [
@@ -80,11 +75,6 @@
         ],
         "menus": {
             "objectExplorer/item/context": [
-              {
-                "command": "extension.testmenus",
-                "when": "connectionProvider == MSSQL && nodeType",
-                "group": "FRK"
-              },
               {
                 "command": "extension.run_sp_blitzindex",
                 "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
