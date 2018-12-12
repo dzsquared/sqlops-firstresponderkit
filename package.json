@@ -2,7 +2,7 @@
     "name": "firstresponderkit",
     "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
@@ -24,7 +24,9 @@
         "onCommand:extension.sp_blitzcache",
         "onCommand:extension.run_sp_blitzcache",
         "onCommand:extension.sp_blitzfirst",
-        "onCommand:extension.run_sp_blitzfirst"
+        "onCommand:extension.run_sp_blitzfirst",
+        "onCommand:extension.testmenus",
+        "*"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -64,6 +66,10 @@
             {
                 "command": "extension.run_sp_blitzcache",
                 "title": "First Responder Kit: Run sp_blitzcache"
+            },
+            {
+                "command": "extension.testmenus",
+                "title": "First Responder Kit: Test Menus"
             }
         ],
         "snippets": [
@@ -75,9 +81,14 @@
         "menus": {
             "objectExplorer/item/context": [
               {
-                "command": "flatFileImport.start",
+                "command": "extension.testmenus",
                 "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
-                "group": "import"
+                "group": "FRK"
+              },
+              {
+                "command": "extension.run_sp_blitzindex",
+                "when": "connectionProvider == MSSQL && nodeType",
+                "group": "FRK"
               }
             ]
           }
