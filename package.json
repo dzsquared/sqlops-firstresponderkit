@@ -82,12 +82,17 @@
             "objectExplorer/item/context": [
               {
                 "command": "extension.testmenus",
+                "when": "connectionProvider == MSSQL && nodeType",
+                "group": "FRK"
+              },
+              {
+                "command": "extension.run_sp_blitzindex",
                 "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
                 "group": "FRK"
               },
               {
                 "command": "extension.run_sp_blitzindex",
-                "when": "connectionProvider == MSSQL && nodeType",
+                "when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
                 "group": "FRK"
               }
             ]

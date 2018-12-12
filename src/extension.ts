@@ -106,13 +106,25 @@ export function activate(context: vscode.ExtensionContext) {
         let scriptText = '';
         if (context) {
             let scriptType = context.nodeInfo.nodeType;
+            fileName = context.nodeInfo.label + '-' + fileName;
+            var nodeBreakdown = context.nodeInfo.nodePath.split("/");
+            let dbName = nodeBreakdown[2];
             switch (scriptType) {
                 case "Database": {
                     scriptText = `EXEC [dbo].[sp_BlitzIndex]
-                        @DatabaseName = '${context.nodeInfo.label}',
+                        @DatabaseName = '${dbName}',
                         --@TableName = '',
                         @Mode = 4
                         --0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details`;
+                    break;
+                }
+                case "Table": {
+                    var tblParts = context.nodeInfo.label.split(".");
+                    let tblName = tblParts[1];
+                    scriptText = `EXEC [dbo].[sp_BlitzIndex]
+                        @DatabaseName = '${dbName}',
+                        @TableName = '${tblName}'
+                        `;
                     break;
                 }
                 default: {
