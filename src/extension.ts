@@ -4,10 +4,19 @@ import * as request from 'request-promise-native';
 import * as sqlops from 'sqlops';
 import { error } from 'util';
 import {placeScript} from './placescript';
-import {BlitzIndex} from './blitzindex';
+import {updatecheck} from './updateCheck';
+// import {BlitzIndex} from './blitzindex';
 
 export function activate(context: vscode.ExtensionContext) {
     const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
+
+    
+    // checking spblitz versioning
+    var getblitzversion = async (context: sqlops.ObjectExplorerContext) => {
+        new updatecheck().checkForUpdates(context);
+    };
+    var disposable_spblitzversion = vscode.commands.registerCommand('extension.sp_blitzversion', getblitzversion);
+    context.subscriptions.push(disposable_spblitzversion);
 
     //importing the full spblitz script
     var getblitz = async () => {
@@ -154,6 +163,7 @@ export function activate(context: vscode.ExtensionContext) {
     };
     var disposable_runspblitzindex = vscode.commands.registerCommand('extension.run_sp_blitzindex', runspblitzindex);
     context.subscriptions.push(disposable_runspblitzindex);
+
 
     //creating the quickrun script for blitzcache
     var runspblitzcache = async () => {
