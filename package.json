@@ -32,8 +32,16 @@
     "contributes": {
         "commands": [
             {
+                "command": "extension.OEdiagnostics",
+                "title": "First Responder Kit: Node Info"
+            },
+            {
                 "command": "extension.sp_blitzversion",
                 "title": "First Responder Kit: Check sp_blitz Version"
+            },
+            {
+                "command": "extension.sp_blitzall",
+                "title": "First Responder Kit: Import sp_blitz and all its friends"
             },
             {
                 "command": "extension.sp_blitz",
@@ -81,13 +89,13 @@
         "menus": {
             "objectExplorer/item/context": [
                 {
-                  "command": "extension.sp_blitzversion",
-                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+                  "command": "extension.OEdiagnostics",
+                  "when": "connectionProvider == MSSQL",
                   "group": "FRK"
                 },
                 {
                   "command": "extension.sp_blitzversion",
-                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Connection",
+                  "when": "connectionProvider == MSSQL",
                   "group": "FRK"
                 },
               {

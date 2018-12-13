@@ -12,13 +12,53 @@ export function activate(context: vscode.ExtensionContext) {
 
     
     // checking spblitz versioning
+    var oediag = async (context: sqlops.ObjectExplorerContext) => {
+        vscode.window.showInformationMessage(context.isConnectionNode.toString());
+        vscode.window.showInformationMessage(context.nodeInfo.label);
+        vscode.window.showInformationMessage(context.nodeInfo.nodePath);
+    };
+    var disposable_oediag = vscode.commands.registerCommand('extension.OEdiagnostics', oediag);
+    context.subscriptions.push(disposable_oediag);
+    
+    // checking spblitz versioning
     var getblitzversion = async (context: sqlops.ObjectExplorerContext) => {
-        new updatecheck().checkForUpdates(context);
+        var amIUPD = new updatecheck();
+        let updateReturn = await amIUPD.checkForUpdates(context);
+
+        // updateChoice.then(function(updateReturn) {
+        // if (updateReturn) {
+            vscode.window.showInformationMessage(updateReturn);
+            if (updateReturn == 'update') {
+                getblitzall();
+            } else if (updateReturn != '') {
+                let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
+                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
+            } else {
+                // do nothing
+                vscode.window.showInformationMessage("nothing came back");
+            }
+        // }
+        // });
     };
     var disposable_spblitzversion = vscode.commands.registerCommand('extension.sp_blitzversion', getblitzversion);
     context.subscriptions.push(disposable_spblitzversion);
 
-    //importing the full spblitz script
+    
+    //importing all first responder kit scripts
+    var getblitzall = async () => {
+        let fileName = "Install-All-Scripts.sql";
+        var options = {
+            uri: baseUrl + fileName,
+        };
+        console.log('Bringing in the first responder kit from the mothership.');
+        const scriptText = await request.get(options);
+        //await placeScript.placescript(fileName, scriptText);
+        new placeScript().placescript(fileName,scriptText);
+    };
+    var disposable_spblitzall = vscode.commands.registerCommand('extension.sp_blitzall', getblitzall);
+    context.subscriptions.push(disposable_spblitzall);
+
+    //importing the original spblitz script
     var getblitz = async () => {
         let fileName = "sp_Blitz.sql";
         var options = {
