@@ -14,8 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
     // checking spblitz versioning
     var oediag = async (context: sqlops.ObjectExplorerContext) => {
         vscode.window.showInformationMessage(context.isConnectionNode.toString());
-        vscode.window.showInformationMessage(context.nodeInfo.label);
-        vscode.window.showInformationMessage(context.nodeInfo.nodePath);
+        vscode.window.showInformationMessage(context.nodeInfo.nodeSubType);
+        vscode.window.showInformationMessage(context.nodeInfo.iconType.toString());
     };
     var disposable_oediag = vscode.commands.registerCommand('extension.OEdiagnostics', oediag);
     context.subscriptions.push(disposable_oediag);
@@ -25,20 +25,16 @@ export function activate(context: vscode.ExtensionContext) {
         var amIUPD = new updatecheck();
         let updateReturn = await amIUPD.checkForUpdates(context);
 
-        // updateChoice.then(function(updateReturn) {
-        // if (updateReturn) {
-            vscode.window.showInformationMessage(updateReturn);
-            if (updateReturn == 'update') {
-                getblitzall();
-            } else if (updateReturn != '') {
-                let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
-                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
-            } else {
-                // do nothing
-                vscode.window.showInformationMessage("nothing came back");
-            }
-        // }
-        // });
+        //vscode.window.showInformationMessage(updateReturn);
+        if (updateReturn == 'update') {
+            getblitzall();
+        } else if (updateReturn != '') {
+            let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
+            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
+        } else {
+            // do nothing
+            vscode.window.showErrorMessage("Sorry about this. Please report the issue on Github.");
+        }
     };
     var disposable_spblitzversion = vscode.commands.registerCommand('extension.sp_blitzversion', getblitzversion);
     context.subscriptions.push(disposable_spblitzversion);

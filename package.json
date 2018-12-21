@@ -95,7 +95,7 @@
                 },
                 {
                   "command": "extension.sp_blitzversion",
-                  "when": "connectionProvider == MSSQL",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
                   "group": "FRK"
                 },
               {
