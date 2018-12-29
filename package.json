@@ -16,25 +16,11 @@
         "url": "https://github.com/dzsquared/sqlops-firstresponderkit.git"
     },
     "activationEvents": [
-        "onCommand:extension.sp_blitzversion",
-        "onCommand:extension.sp_blitz",
-        "onCommand:extension.run_sp_blitz",
-        "onCommand:extension.sp_blitzwho",
-        "onCommand:extension.sp_blitzindex",
-        "onCommand:extension.run_sp_blitzindex",
-        "onCommand:extension.sp_blitzcache",
-        "onCommand:extension.run_sp_blitzcache",
-        "onCommand:extension.sp_blitzfirst",
-        "onCommand:extension.run_sp_blitzfirst",
         "*"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
-            {
-                "command": "extension.OEdiagnostics",
-                "title": "First Responder Kit: Node Info"
-            },
             {
                 "command": "extension.sp_blitzversion",
                 "title": "First Responder Kit: Check sp_blitz Version"
@@ -88,11 +74,6 @@
         ],
         "menus": {
             "objectExplorer/item/context": [
-                {
-                  "command": "extension.OEdiagnostics",
-                  "when": "connectionProvider == MSSQL",
-                  "group": "FRK"
-                },
                 {
                   "command": "extension.sp_blitzversion",
                   "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",

@@ -10,7 +10,8 @@
             "@CheckProcedureCacheFilter = NULL,",
             "@CheckServerInfo = 1",
             "-- uncomment the following line to write results to an output table",
-            "--, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'"
+            "--, @OutputDatabaseName = 'DBAtools', @OutputSchemaName = 'dbo', @OutputTableName = 'BlitzResults'",
+            "-- for more info: https://www.brentozar.com/blitz/"
         ],
         "description": "sp_blitz execution script"
     },
@@ -21,7 +22,8 @@
            "@DatabaseName = '${1:DatabaseName}',",
            "--@TableName = '${2:TableName}'",
             "--@Mode = 4",
-            "--0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details"
+            "--0=Diagnose, 1=Summarize, 2=Index Usage Detail, 3=Missing Index Detail, 4=Diagnose Details",
+            "-- for more info: https://www.brentozar.com/blitzindex/"
         ],
         "description": "sp_blitzindex execution script"
     },
@@ -31,7 +33,8 @@
             "EXEC [dbo].[sp_BlitzCache]",
             "@SortOrder = 'reads',",
             "    -- CPU, executions, xpm, recent compilations, memory grant, writes, all",
-            "@Top = 10"
+            "@Top = 10",
+            "-- for more info: https://www.brentozar.com/blitzcache/"
         ],
         "description": "sp_blitzcache execution script"
     },
@@ -41,7 +44,8 @@
             "EXEC [dbo].[sp_BlitzFirst]",
             "@Seconds = 5,",
             "@ShowSleepingSPIDs = 0,",
-            "@ExpertMode = 0 --1 will also run sp_BlitzWho"
+            "@ExpertMode = 0 --1 will also run sp_BlitzWho",
+            "-- for more info: https://www.brentozar.com/askbrent/"
         ],
         "description": "sp_blitzfirst execution script"
     }

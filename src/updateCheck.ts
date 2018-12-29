@@ -4,7 +4,6 @@ import * as sqlops from 'sqlops';
 import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
 import * as apiConfig from  './apiconfig';
-import { STATUS_CODES } from 'http';
 let apiconfig: apiConfig.apiconfig = require('../apiconfig.json');
 
 export class updatecheck {
@@ -15,7 +14,7 @@ export class updatecheck {
         let queryProvider = sqlops.dataprotocol.getProvider<sqlops.QueryProvider>(context.connectionProfile.providerName, sqlops.DataProviderType.QueryProvider);
         vscode.window.showInformationMessage("Checking First Responder Kit for Updates");
         try {
-            let connection = await sqlops.connection.getCurrentConnection();
+            let connection = context.connectionProfile;
             let query = `declare @versionno datetime
                 IF OBJECT_ID('dbo.sp_Blitz') IS NULL
                 set @versionno = '1/1/1900'
@@ -23,13 +22,13 @@ export class updatecheck {
                 exec sp_blitz @help = 1, @versiondate = @versionno output
                 select convert(varchar(10),@versionno,112) as versionno`;
 
-            let connectionUri = await sqlops.connection.getUriForConnection(connection.connectionId);
+            let connectionUri = await sqlops.connection.getUriForConnection(connection.id);
             if (connection) {
                 let results = await queryProvider.runQueryAndReturn(connectionUri, query);
                 let cell = results.rows[0][0];
                 let currentVersion = cell.displayValue;
 
-                //get live most recent version
+                //get live most recent version from github
                 var options = {
                     uri: baseUrl,
                     headers: {
@@ -40,14 +39,27 @@ export class updatecheck {
                     simple: false
                 };
                 var scriptText = await request.get(options);
-
                 let recentVersion = scriptText.tag_name;
+
                 //compare against db version
-                if (recentVersion >  currentVersion) {
-                    let updateMsg = 'New Version of First Responder Kit available (' + recentVersion + ').  You have version ' + currentVersion +'.'
-                    var buttonName = await vscode.window.showInformationMessage(updateMsg, {modal:false}, "Get It", "Tell Me More");
+                if (currentVersion == '19000101') {
+                    let updateMsg = 'First Responder Kit not detected on this server. Current version of First Responder Kit is ' + recentVersion + '.'
+                    var buttonName = await vscode.window.showInformationMessage(updateMsg, {modal:false}, "Get It Now", "Tell Me More");
                     if (buttonName){
-                        if (buttonName == "Get It") {
+                        if (buttonName == "Get It Now") {
+                            return 'update';
+                        } else if (buttonName == "Tell Me More") {
+                            return recentVersion;
+                        }
+                    } else {
+                        return '';
+                    }
+                }
+                else if (recentVersion >  currentVersion) {
+                    let updateMsg = 'New Version of First Responder Kit available (' + recentVersion + ').  You have version ' + currentVersion +'.'
+                    var buttonName = await vscode.window.showInformationMessage(updateMsg, {modal:false}, "Get It Now", "Tell Me More");
+                    if (buttonName){
+                        if (buttonName == "Get It Now") {
                             return 'update';
                         } else if (buttonName == "Tell Me More") {
                             return recentVersion;
