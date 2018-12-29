@@ -183,7 +183,7 @@ export function activate(context: vscode.ExtensionContext) {
         scriptText += `
         -- for more info: https://www.brentozar.com/blitzindex/
         `;
-        new placeScript().placescript(fileName,scriptText);
+        new placeScript().placescript(fileName,scriptText,context);
         
     };
     var disposable_runspblitzindex = vscode.commands.registerCommand('extension.run_sp_blitzindex', runspblitzindex);
