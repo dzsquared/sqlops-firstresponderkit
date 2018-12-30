@@ -98,6 +98,16 @@
                   "group": "FRK"
                 },
                 {
+                  "command": "extension.run_sp_blitz",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
+                  "group": "FRK"
+                },
+                {
+                  "command": "extension.run_sp_blitzfirst",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
+                  "group": "FRK"
+                },
+                {
                   "command": "extension.run_sp_blitzlock",
                   "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
                   "group": "FRK"

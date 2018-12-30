@@ -104,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable_spblitzwho);
 
     //creating the quickrun script
-    var runspblitz = async () => {
+    var runspblitz = async (context?: sqlops.ObjectExplorerContext) => {
         console.log('Preparing sample run script.');
         let fileName = "exec_sp_blitz.sql";
         const scriptText = `EXEC [dbo].[sp_Blitz]
@@ -120,7 +120,7 @@ export function activate(context: vscode.ExtensionContext) {
         -- for more info: https://www.brentozar.com/blitz/
         `;
         var setting: vscode.Uri = vscode.Uri.parse("untitled:" + fileName);
-        new placeScript().placescript(fileName,scriptText);
+        new placeScript().placescript(fileName,scriptText,context);
     };
     var disposable_runspblitz = vscode.commands.registerCommand('extension.run_sp_blitz', runspblitz);
     context.subscriptions.push(disposable_runspblitz);
@@ -209,7 +209,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable_runspblitzcache);
 
     //creating the quickrun script for blitzfirst
-    var runspblitzfirst = async () => {
+    var runspblitzfirst = async (context?: sqlops.ObjectExplorerContext) => {
         let fileName = "exec_sp_blitzfirst.sql";
         console.log('Preparing sample run script.');
         const scriptText = `EXEC [dbo].[sp_BlitzFirst]
@@ -219,7 +219,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         -- for more info: https://www.brentozar.com/askbrent/
         `;
-        new placeScript().placescript(fileName,scriptText);
+        new placeScript().placescript(fileName,scriptText,context);
     };
     var disposable_runspblitzfirst = vscode.commands.registerCommand('extension.run_sp_blitzfirst',runspblitzfirst);
     context.subscriptions.push(disposable_runspblitzfirst);
@@ -237,7 +237,6 @@ export function activate(context: vscode.ExtensionContext) {
                 case "Database": {
                     scriptText = `EXEC [dbo].[sp_BlitzLock]
                         @DatabaseName = '${dbName}',
-                        --@TableName = '',
                         @Top = 10`;
                     break;
                 }
@@ -267,6 +266,27 @@ export function activate(context: vscode.ExtensionContext) {
         const scriptText = `EXEC sp_WhoIsActive 
         @find_block_leaders = 1, 
         @sort_order = '[blocked_session_count] DESC'
+        -- @filter  = '',
+        -- @filter_type  = 'session', 
+        -- @not_filter  = '', 
+        -- @not_filter_type  = 'session', 
+        -- @show_own_spid  = 0, 
+        -- @show_system_spids  = 0, 
+        -- @show_sleeping_spids  = 1, 
+        -- @get_full_inner_text  = 0,
+        -- @get_plans  = 0, 
+        -- @get_outer_command  = 0, 
+        -- @get_transaction_info  = 0, 
+        -- @get_task_info  = 1, 
+        -- @get_locks  = 0, 
+        -- @get_avg_time  = 0, 
+        -- @get_additional_info  = 0,  
+        -- @delta_interval  = 0, 
+        -- @output_column_list  = '[dd%][session_id][sql_text][sql_command][login_name][wait_info][tasks][tran_log%][cpu%][temp%][block%][reads%][writes%][context%][physical%][query_plan][locks][%]', 
+        -- @format_output  = 1, 
+        -- @destination_table  = '', 
+        -- @return_schema  = 0, 
+        -- @help  = 0
 
         -- for more info: http://whoisactive.com/docs/
         `;

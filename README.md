@@ -9,31 +9,49 @@ The current release is available to [download as a .vsix file](https://github.co
 ## Features
 
 ### Import
-Import a script from the First Responder Kit to a new editor by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Import <some script>`
+Import a script from the First Responder Kit to a new editor by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Import <some script>`. To import all scripts at once, select `First Responder Kit: Import sp_Blitz and all its friends`.
 
 
 ![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_import.gif)
 
 ### Run
-Already have the current scripts loaded to the database?  Great! Take the shortcut to execution by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Run <some script>`
+Already have the current scripts loaded to the database?  Great! Take the shortcut to execution by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Run <some script>`.  Several scripts are available in Object Explorer at Server, Database, and Table nodes.
 
 ![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_run.gif)
 
-## Requirements
+### Check Your Current Version
+Want to check the sp_Blitz version on a server? You can check your current connection or a server in object explorer and find out if you have the current version.
+
+
+![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/checkFRKversion.gif)
+![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/newVersionAvailable.gif)
+
+
+-----------------------------------------------------------------------------------------------------------
+
+## Extension Requirements
 
 Internet connectivity is required for any of the "Import" commands, which connect to GitHub to fetch recent versions of the scripts.  A GitHub account is NOT required.
 
+First Responder Kit scripts require SQL Server 2008 or newer.  See current requirements for the scripts at http://firstresponderkit.org/.
 
 -----------------------------------------------------------------------------------------------------------
 
 ## Known Issues
 
-None yet.
+No open issues at this time.
 
 ## Unknown Issues
 Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
+
+### 0.4.0
+
+- Adds sp_blitzlock and sp_whoisactive
+- Adds version check for sp_blitz
+- Adds single command to get sp_blitz and all associated scripts
+- Adds menu items for object explorer for sp_blitz, sp_blitzindex, sp_blitzfirst, sp_blitzlock, and sp_whoisactive
 
 ### 0.3.0
 
@@ -51,3 +69,9 @@ Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 ### 0.1.0
 
 - Initial release.
+
+
+-----------------------------------------------------------------------------------------------------------
+
+## Special Thanks
+A very important thank you to [Brent Ozar Unlimited](https://www.brentozar.com/) for supporting this extension.
