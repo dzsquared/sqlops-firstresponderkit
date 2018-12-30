@@ -23,47 +23,55 @@
         "commands": [
             {
                 "command": "extension.sp_blitzversion",
-                "title": "First Responder Kit: Check sp_blitz Version"
+                "title": "First Responder Kit: Check sp_Blitz Version"
             },
             {
                 "command": "extension.sp_blitzall",
-                "title": "First Responder Kit: Import sp_blitz and all its friends"
+                "title": "First Responder Kit: Import sp_Blitz and all its friends"
             },
             {
                 "command": "extension.sp_blitz",
-                "title": "First Responder Kit: Import sp_blitz"
+                "title": "First Responder Kit: Import sp_Blitz"
             },
             {
                 "command": "extension.run_sp_blitz",
-                "title": "First Responder Kit: Run sp_blitz"
+                "title": "First Responder Kit: Run sp_Blitz"
             },
             {
                 "command": "extension.sp_blitzindex",
-                "title": "First Responder Kit: Import sp_blitzindex"
+                "title": "First Responder Kit: Import sp_BlitzIndex"
             },
             {
                 "command": "extension.run_sp_blitzindex",
-                "title": "First Responder Kit: Run sp_blitzindex"
+                "title": "First Responder Kit: Run sp_BlitzIndex"
             },
             {
                 "command": "extension.sp_blitzwho",
-                "title": "First Responder Kit: Import sp_blitzwho"
+                "title": "First Responder Kit: Import sp_BlitzWho"
             },
             {
                 "command": "extension.sp_blitzfirst",
-                "title": "First Responder Kit: Import sp_blitzfirst"
+                "title": "First Responder Kit: Import sp_BlitzFirst"
             },
             {
                 "command": "extension.run_sp_blitzfirst",
-                "title": "First Responder Kit: Run sp_blitzfirst"
+                "title": "First Responder Kit: Run sp_BlitzFirst"
             },
             {
                 "command": "extension.sp_blitzcache",
-                "title": "First Responder Kit: Import sp_blitzcache"
+                "title": "First Responder Kit: Import sp_BlitzCache"
             },
             {
                 "command": "extension.run_sp_blitzcache",
-                "title": "First Responder Kit: Run sp_blitzcache"
+                "title": "First Responder Kit: Run sp_BlitzCache"
+            },
+            {
+                "command": "extension.run_sp_whoisactive",
+                "title": "First Responder Kit: Run sp_WhoIsActive"
+            },
+            {
+                "command": "extension.run_sp_blitzlock",
+                "title": "First Responder Kit: Run sp_BlitzLock"
             }
         ],
         "snippets": [
@@ -77,6 +85,21 @@
                 {
                   "command": "extension.sp_blitzversion",
                   "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
+                  "group": "FRK"
+                },
+                {
+                  "command": "extension.run_sp_whoisactive",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
+                  "group": "FRK"
+                },
+                {
+                  "command": "extension.run_sp_blitzlock",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Server",
+                  "group": "FRK"
+                },
+                {
+                  "command": "extension.run_sp_blitzlock",
+                  "when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
                   "group": "FRK"
                 },
               {

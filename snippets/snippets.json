@@ -48,5 +48,14 @@
             "-- for more info: https://www.brentozar.com/askbrent/"
         ],
         "description": "sp_blitzfirst execution script"
+    },
+    "FRK sp_whoisactive": {
+        "prefix": "sqlFRKspWhoIsActive",
+        "body": [
+            "EXEC sp_WhoIsActive ",
+            "@find_block_leaders = 1,", 
+            "@sort_order = '[blocked_session_count] DESC'",
+            "-- for more info: http://whoisactive.com/docs/"
+        ]
     }
 }

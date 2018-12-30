@@ -19,15 +19,17 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable_oediag);
     
     // checking spblitz versioning
-    var getblitzversion = async (context: sqlops.ObjectExplorerContext) => {
+    var getblitzversion = async (context?: sqlops.ObjectExplorerContext) => {
         var amIUPD = new updatecheck();
         let updateReturn = await amIUPD.checkForUpdates(context);
+        if (updateReturn) {
+            if (updateReturn == 'update') {
+                getblitzall();
+            } else if (updateReturn != '') {
+                let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
+                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
+            }
 
-        if (updateReturn == 'update') {
-            getblitzall();
-        } else if (updateReturn != '') {
-            let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
-            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
         } else {
             // do nothing
         }
@@ -221,6 +223,57 @@ export function activate(context: vscode.ExtensionContext) {
     };
     var disposable_runspblitzfirst = vscode.commands.registerCommand('extension.run_sp_blitzfirst',runspblitzfirst);
     context.subscriptions.push(disposable_runspblitzfirst);
+
+    //creating the quickrun script for blitzlock
+    var runspblitzlock = async (context?: sqlops.ObjectExplorerContext) => {
+        let fileName = "exec_sp_blitzlock.sql";
+        let scriptText = '';
+        if (context && context.nodeInfo) {
+            let scriptType = context.nodeInfo.nodeType;
+            fileName = context.nodeInfo.label + '-' + fileName;
+            var nodeBreakdown = context.nodeInfo.nodePath.split("/");
+            let dbName = nodeBreakdown[2];
+            switch (scriptType) {
+                case "Database": {
+                    scriptText = `EXEC [dbo].[sp_BlitzLock]
+                        @DatabaseName = '${dbName}',
+                        --@TableName = '',
+                        @Top = 10`;
+                    break;
+                }
+                default: {
+                    scriptText = `EXEC [dbo].[sp_BlitzLock]
+                        @Top = 10`;
+                    break;
+                }
+            }
+        } else {
+            scriptText = `EXEC [dbo].[sp_BlitzLock]
+                @Top = 10
+                --@DatabaseName = '',`;
+        }
+        scriptText += `
+        -- for more info: https://www.brentozar.com/archive/2017/12/introducing-sp_blitzlock-troubleshooting-sql-server-deadlocks/
+        `;
+        new placeScript().placescript(fileName,scriptText,context);
+    };
+    var disposable_runspblitzlock = vscode.commands.registerCommand('extension.run_sp_blitzlock',runspblitzlock);
+    context.subscriptions.push(disposable_runspblitzlock);
+    
+    //creating the quickrun script for whoisactive
+    var runspwhoisactive = async (context?: sqlops.ObjectExplorerContext) => {
+        let fileName = "exec_sp_whoisactive.sql";
+        console.log('Preparing sample run script.');
+        const scriptText = `EXEC sp_WhoIsActive 
+        @find_block_leaders = 1, 
+        @sort_order = '[blocked_session_count] DESC'
+
+        -- for more info: http://whoisactive.com/docs/
+        `;
+        new placeScript().placescript(fileName,scriptText,context);
+    };
+    var disposable_runspwhoisactive = vscode.commands.registerCommand('extension.run_sp_whoisactive',runspwhoisactive);
+    context.subscriptions.push(disposable_runspwhoisactive);
 
 }
 

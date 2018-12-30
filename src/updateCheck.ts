@@ -7,14 +7,22 @@ import * as apiConfig from  './apiconfig';
 let apiconfig: apiConfig.apiconfig = require('../apiconfig.json');
 
 export class updatecheck {
-    public async checkForUpdates(context: sqlops.ObjectExplorerContext): Promise<string> {
+    public async checkForUpdates(context?: sqlops.ObjectExplorerContext): Promise<string> {
         let baseUrl = "https://api.github.com/repos/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/latest";
 
         let apitoken = 'token ' + apiconfig.token;
-        let queryProvider = sqlops.dataprotocol.getProvider<sqlops.QueryProvider>(context.connectionProfile.providerName, sqlops.DataProviderType.QueryProvider);
         vscode.window.showInformationMessage("Checking First Responder Kit for Updates");
+        
         try {
-            let connection = context.connectionProfile;
+            var connectId;
+            if (context) {
+                let connection = context.connectionProfile;
+                connectId = connection.id;
+            } else {
+                let connection = await sqlops.connection.getCurrentConnection();
+                connectId = connection.connectionId;
+            }
+
             let query = `declare @versionno datetime
                 IF OBJECT_ID('dbo.sp_Blitz') IS NULL
                 set @versionno = '1/1/1900'
@@ -22,8 +30,9 @@ export class updatecheck {
                 exec sp_blitz @help = 1, @versiondate = @versionno output
                 select convert(varchar(10),@versionno,112) as versionno`;
 
-            let connectionUri = await sqlops.connection.getUriForConnection(connection.id);
-            if (connection) {
+            if (connectId) {
+                let connectionUri = await sqlops.connection.getUriForConnection(connectId);
+                let queryProvider = sqlops.dataprotocol.getProvider<sqlops.QueryProvider>(context.connectionProfile.providerName, sqlops.DataProviderType.QueryProvider);
                 let results = await queryProvider.runQueryAndReturn(connectionUri, query);
                 let cell = results.rows[0][0];
                 let currentVersion = cell.displayValue;
