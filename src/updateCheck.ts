@@ -1,6 +1,6 @@
 'use strict';
 
-import * as sqlops from 'sqlops';
+import * as sqlops from 'azdata';
 import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
 import * as apiConfig from  './apiconfig';
