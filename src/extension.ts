@@ -1,7 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
-import * as sqlops from 'sqlops';
+import * as sqlops from 'azdata';
 import { error } from 'util';
 import {placeScript} from './placescript';
 import {updatecheck} from './updateCheck';

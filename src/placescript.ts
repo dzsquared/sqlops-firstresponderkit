@@ -1,6 +1,6 @@
 'use strict';
 
-import * as sqlops from 'sqlops';
+import * as sqlops from 'azdata';
 import * as vscode from 'vscode';
 
 export class placeScript {
