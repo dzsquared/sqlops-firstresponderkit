@@ -24,11 +24,21 @@ export class updatecheck {
             }
 
             let query = `declare @versionno datetime
-                IF OBJECT_ID('dbo.sp_Blitz') IS NULL
-                set @versionno = '1/1/1900'
-                ELSE
-                exec sp_blitz @help = 1, @versiondate = @versionno output
-                select convert(varchar(10),@versionno,112) as versionno`;
+            DECLARE @VERSION VARCHAR(30)
+            
+            IF OBJECT_ID('dbo.sp_Blitz') IS NULL
+            set @versionno = '1/1/1900'
+            ELSE
+            BEGIN
+                BEGIN TRY
+                    exec sp_blitz @VERSIONCHECKMODE = 1, @VERSION = @VERSION OUTPUT, @versiondate = @versionno output;
+                END TRY
+                BEGIN CATCH
+                    exec sp_blitz @help = 1, @versiondate = @versionno output
+                END CATCH
+            END
+            
+            select convert(varchar(10),@versionno,112) as versionno`;
 
             if (connectId) {
                 let connectionUri = await sqlops.connection.getUriForConnection(connectId);
