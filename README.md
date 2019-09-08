@@ -3,7 +3,7 @@
 This extension provides immediate access to the current First Responder Kit scripts and introductory execution suggestions. (All credit due to http://firstresponderkit.org/)
 
 ## Installation
-The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.4.0/firstresponderkit-0.4.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
+The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.5.0/firstresponderkit-0.5.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
 
 
 ## Features
@@ -26,6 +26,12 @@ Want to check the sp_Blitz version on a server? You can check your current conne
 ![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/checkFRKversion.gif)
 ![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/newVersionAvailable.gif)
 
+### Database Dashboard Tab
+
+Selected elements from the First Responder Kit PowerBI dashboard have been replicated in a dashboard tab.  The elements execute against the current database and require the database configured to contain First Responder Kit historical data.  For more information on data collection configuration, please see: https://www.brentozar.com/first-aid/first-responder-kit-power-bi-dashboard/
+
+
+![Insights Tab](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/insightsTab.png)
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -45,6 +51,12 @@ No open issues at this time.
 Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
+
+### 0.5.0
+
+- Improvement to version check process
+- Moves from sqlops to azdata dependency
+- Adds dashboard tab with insights based on First Responder Kit Power BI dashboard
 
 ### 0.4.0
 
