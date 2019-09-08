@@ -140,6 +140,22 @@
                 }
             },
             {
+                "id": "sqlops-firstresponderkit.waittimes",
+                "contrib": {
+                    "queryFile": "./sql/waittimes.sql",
+                    "type": {
+                        "bar": {
+                            "dataDirection": "vertical",
+                            "columnsAsLabels": true,
+                            "labelFirstColumn": false,
+                            "legendPosition": "left",
+                            "yAxisLabel": "Wait Time, Minutes per Minute",
+                            "dataType": "point"
+                        }
+                    }
+                }
+            },
+            {
                 "id": "sqlops-firstresponderkit.blitzfirst",
                 "contrib": {
                     "queryFile": "./sql/blitzfirst.sql",
@@ -177,6 +193,16 @@
                 "description": "First Responder Kit Dashboard",
                 "container": {
                     "widgets-container": [
+                        {
+                            "name": "Top 3 Wait Times",
+                            "gridItemConfig": {
+                                "sizex": 3,
+                                "sizey": 1
+                            },
+                            "widget": {
+                                "sqlops-firstresponderkit.waittimes": {}
+                            }
+                        },
                         {
                             "name": "Wait Types",
                             "gridItemConfig": {
