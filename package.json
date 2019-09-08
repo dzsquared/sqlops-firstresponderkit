@@ -2,7 +2,7 @@
     "name": "firstresponderkit",
     "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
@@ -123,7 +123,95 @@
                     "group": "FRK"
                 }
             ]
-        }
+        },
+        "dashboard.insights": [
+            {
+                "id": "sqlops-firstresponderkit.waittypes",
+                "contrib": {
+                    "queryFile": "./sql/waittypes.sql",
+                    "type": {
+                        "horizontalBar": {
+                            "dataDirection": "vertical",
+                            "columnsAsLabels": true,
+                            "labelFirstColumn": false,
+                            "legendPosition": "top"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "sqlops-firstresponderkit.blitzfirst",
+                "contrib": {
+                    "queryFile": "./sql/blitzfirst.sql",
+                    "type": {
+                        "table": {
+                            "dataDirection": "horizontal",
+                            "columnsAsLabels": true,
+                            "labelFirstColumn": true,
+                            "legendPosition": "bottom",
+                            "dataType": "number"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "sqlops-firstresponderkit.blitzcache",
+                "contrib": {
+                    "queryFile": "./sql/blitzcache.sql",
+                    "type": {
+                        "table": {
+                            "dataDirection": "horizontal",
+                            "columnsAsLabels": true,
+                            "labelFirstColumn": true,
+                            "legendPosition": "bottom",
+                            "dataType": "number"
+                        }
+                    }
+                }
+            }
+        ],
+        "dashboard.tabs": [
+            {
+                "id": "sqlops-firstresponderkit.tab",
+                "title": "First Responder Kit",
+                "description": "First Responder Kit Dashboard",
+                "container": {
+                    "widgets-container": [
+                        {
+                            "name": "Wait Types",
+                            "gridItemConfig": {
+                                "sizex": 1,
+                                "sizey": 2
+                            },
+                            "widget": {
+                                "sqlops-firstresponderkit.waittypes": {}
+                            }
+                        },
+                        {
+                            "name": "Quick Diagnosis from sp_BlitzFirst",
+                            "gridItemConfig": {
+                                "sizex": 2,
+                                "sizey": 2
+                            },
+                            "widget": {
+                                "sqlops-firstresponderkit.blitzfirst": {}
+                            }
+                        },
+                        {
+                            "name": "Resource-Intensive Queries from sp_BlitzCache",
+                            "gridItemConfig": {
+                                "sizex": 3,
+                                "sizey": 1
+                            },
+                            "widget": {
+                                "sqlops-firstresponderkit.blitzcache": {}
+                            }
+                        }
+                    ]
+                },
+                "when": "dashboardContext == 'database'"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
