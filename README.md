@@ -56,7 +56,7 @@ Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 - Improvement to version check process
 - Moves from sqlops to azdata dependency
-- Adds dashboard tab with insights based on First Responder Kit Power BI dashboard
+- Adds dashboard tab with insights widgets
 
 ### 0.4.0
 
