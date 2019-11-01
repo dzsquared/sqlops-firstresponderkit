@@ -2,7 +2,6 @@
 import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
 import * as sqlops from 'azdata';
-import { error } from 'util';
 import {placeScript} from './placescript';
 import {updatecheck} from './updateCheck';
 
@@ -146,8 +145,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (context) {
             let scriptType = context.nodeInfo.nodeType;
             fileName = context.nodeInfo.label + '-' + fileName;
-            var nodeBreakdown = context.nodeInfo.nodePath.split("/");
-            let dbName = nodeBreakdown[2];
+            let dbName = context.connectionProfile.databaseName;
             switch (scriptType) {
                 case "Database": {
                     scriptText = `EXEC [dbo].[sp_BlitzIndex]
@@ -158,10 +156,11 @@ export function activate(context: vscode.ExtensionContext) {
                     break;
                 }
                 case "Table": {
-                    var tblParts = context.nodeInfo.label.split(".");
-                    let tblName = tblParts[1];
+                    let schName: string = context.nodeInfo.metadata.schema;
+                    let tblName: string = context.nodeInfo.metadata.name;
                     scriptText = `EXEC [dbo].[sp_BlitzIndex]
                         @DatabaseName = '${dbName}',
+                        @SchemaName = '${schName}',
                         @TableName = '${tblName}'
                         `;
                     break;
