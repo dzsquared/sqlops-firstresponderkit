@@ -7,15 +7,6 @@ import {updatecheck} from './updateCheck';
 
 export function activate(context: vscode.ExtensionContext) {
     const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
-
-    // checking spblitz versioning
-    var oediag = async (context: sqlops.ObjectExplorerContext) => {
-        vscode.window.showInformationMessage(context.isConnectionNode.toString());
-        vscode.window.showInformationMessage(context.nodeInfo.nodeSubType);
-        vscode.window.showInformationMessage(context.nodeInfo.iconType.toString());
-    };
-    var disposable_oediag = vscode.commands.registerCommand('extension.OEdiagnostics', oediag);
-    context.subscriptions.push(disposable_oediag);
     
     // checking spblitz versioning
     var getblitzversion = async (context?: sqlops.ObjectExplorerContext) => {
