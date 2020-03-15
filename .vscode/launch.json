@@ -15,7 +15,7 @@
             "name": "Extension",
             "type": "sqlopsExtensionHost",
             "request": "launch",
-            "runtimeExecutable": "azuredatastudio-insiders",
+            "runtimeExecutable": "azuredatastudio",
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}"
             ],
@@ -28,10 +28,10 @@
             "name": "Extension Tests",
             "type": "sqlopsExtensionHost",
             "request": "launch",
-            "runtimeExecutable": "azuredatastudio-insiders",
+            "runtimeExecutable": "azuredatastudio",
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test"
+                "--extensionTestsPath=${workspaceFolder}/dist/test"
             ],
             "outFiles": [
                 "${workspaceFolder}/out/test/**/*.js"
