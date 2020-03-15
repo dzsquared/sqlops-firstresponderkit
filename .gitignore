@@ -4,3 +4,4 @@ node_modules
 *.vsix
 secrets.txt
 apiconfig.json
+dist

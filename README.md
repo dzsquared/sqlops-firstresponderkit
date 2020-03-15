@@ -52,6 +52,11 @@ Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
 
+### 0.5.1
+
+- Fix for changes to new editor connection changes in Azure Data Studio 1.15.0
+- Extension bundled with webpack
+
 ### 0.5.0
 
 - Improvement to version check process
