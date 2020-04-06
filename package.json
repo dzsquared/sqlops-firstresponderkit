@@ -18,7 +18,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./dist/extension",
+    "main": "./out/extension",
     "contributes": {
         "commands": [
             {
@@ -36,6 +36,11 @@
             {
                 "command": "extension.run_sp_blitz",
                 "title": "First Responder Kit: Run sp_Blitz"
+            },
+            {
+                "command": "extension.docs_sp_blitz",
+                "title": "First Responder Kit: Docs for sp_Blitz",
+                "when": false
             },
             {
                 "command": "extension.sp_blitzindex",
@@ -259,6 +264,7 @@
         "webpack-cli": "^3.3.11"
     },
     "dependencies": {
+        "clipboardy": "^2.2.0",
         "request": "^2.87.0",
         "request-promise-native": "^1.0.5"
     }
