@@ -2,7 +2,7 @@
     "name": "firstresponderkit",
     "displayName": "First Responder Kit",
     "description": "Current Versions of the sp_blitz Scripts",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
@@ -18,7 +18,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./dist/extension",
+    "main": "./out/extension",
     "contributes": {
         "commands": [
             {
@@ -259,6 +259,7 @@
         "webpack-cli": "^3.3.11"
     },
     "dependencies": {
+        "clipboardy": "^2.2.0",
         "request": "^2.87.0",
         "request-promise-native": "^1.0.5"
     }
