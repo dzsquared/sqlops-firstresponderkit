@@ -11,13 +11,11 @@ export async function openDocumentation(baseUrl: string, scriptName: string) {
     const scriptText = await request.get(options);
 
     // find ## sp_blitz:
-    vscode.window.showInformationMessage(scriptName);
     let docIndex = scriptText.indexOf('## '+scriptName +':');
     let newLineIndex = scriptText.indexOf('\n', docIndex)
 
     // parse full line
     let bookmarkLine: string = scriptText.substring(docIndex+3, newLineIndex+1);
-    vscode.window.showInformationMessage(bookmarkLine);
 
     // convert to link
     let docsUrlArray:string[] = Array.from(bookmarkLine);
