@@ -9,7 +9,7 @@ import * as getScripts from './getScripts';
 import * as runScripts from './runScripts';
 
 export function activate(context: vscode.ExtensionContext) {
-    const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
+    const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
     
     // documentation 
     let currentBlitz: string = 'sp_Blitz';

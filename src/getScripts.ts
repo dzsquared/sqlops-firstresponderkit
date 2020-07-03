@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import * as request from 'request-promise-native';
 import {placeScript} from './placescript';
 
-const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/master/";
+const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
 
 async function spblitzscript(baseUrl: string, fileName: string) {
     let options = {
