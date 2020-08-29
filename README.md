@@ -3,7 +3,7 @@
 This extension provides immediate access to the current First Responder Kit scripts and introductory execution suggestions. (All credit due to http://firstresponderkit.org/)
 
 ## Installation
-The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.5.1/firstresponderkit-0.5.1.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
+The current release is available to [download as a .vsix file](https://github.com/dzsquared/sqlops-firstresponderkit/releases/download/0.6.0/firstresponderkit-0.6.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
 
 
 ## Features
@@ -12,26 +12,30 @@ The current release is available to [download as a .vsix file](https://github.co
 Import a script from the First Responder Kit to a new editor by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Import <some script>`. To import all scripts at once, select `First Responder Kit: Import sp_Blitz and all its friends`.
 
 
-![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_import.gif)
+![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/frk_import.gif)
 
 ### Run
 Already have the current scripts loaded to the database?  Great! Take the shortcut to execution by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Run <some script>`.  Several scripts are available in Object Explorer at Server, Database, and Table nodes.
 
-![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_run.gif)
+![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/frk_run.gif)
 
 ### Check Your Current Version
 Want to check the sp_Blitz version on a server? You can check your current connection or a server in object explorer and find out if you have the current version.
 
 
-![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/checkFRKversion.gif)
-![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/newVersionAvailable.gif)
+![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/checkFRKversion.gif)
+![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/newVersionAvailable.gif)
 
 ### Database Dashboard Tab
 
 Selected elements from the First Responder Kit PowerBI dashboard have been replicated in a dashboard tab.  The elements execute against the current database and require the database configured to contain First Responder Kit historical data.  For more information on data collection configuration, please see: https://www.brentozar.com/first-aid/first-responder-kit-power-bi-dashboard/
 
 
-![Insights Tab](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/insightsTab.png)
+![Insights Tab](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/insightsTab.png)
+
+### First Responder Kit Documentation
+
+When the contents of the query editor contain references to sp_Blitz, sp_BlitzCache, sp_BlitzIndex, sp_BlitzFirst, sp_BlitzWho, sp_BlitzInMemoryOLTP, sp_BlitzLock, sp_BlitzQueryStore, sp_BlitzBackups - access to First Responder Kit documentation is 
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -51,6 +55,10 @@ No open issues at this time.
 Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Release Notes
+
+### 0.6.0
+- Switches from master to main branch for [First Responder Kit](https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/tree/main)
+- Adds interactive documentation linking to editor
 
 ### 0.5.1
 
