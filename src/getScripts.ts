@@ -1,22 +1,25 @@
 'use strict';
 import * as vscode from 'vscode';
+import * as sqlops from 'azdata';
 import * as request from 'request-promise-native';
 import {placeScript} from './placescript';
 
 const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
 
-async function spblitzscript(baseUrl: string, fileName: string) {
+async function spblitzscript(baseUrl: string, fileName: string, context?: sqlops.ObjectExplorerContext) {
+    if(context) { vscode.window.showInformationMessage("context before get: "+ context.connectionProfile.id)};
     let options = {
         uri: baseUrl + fileName,
     };
     console.log('Bringing in the first responder kit from the mothership.');
     const scriptText = await request.get(options);
-    new placeScript().placescript(fileName,scriptText);
+    if(context) { vscode.window.showInformationMessage("context after get: "+ context.connectionProfile.id)};
+    new placeScript().placescript(fileName, scriptText, context);
 }
 
 //importing all first responder kit scripts
-export let getblitzall = async () => {
-    await spblitzscript(baseUrl, "Install-All-Scripts.sql");
+export let getblitzall = async (context?: sqlops.ObjectExplorerContext) => {
+    await spblitzscript(baseUrl, "Install-All-Scripts.sql", context);
 };
 export let disposable_spblitzall = vscode.commands.registerCommand('extension.sp_blitzall', getblitzall);
 

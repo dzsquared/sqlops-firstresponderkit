@@ -6,7 +6,7 @@
     "publisher": "drewsk",
     "engines": {
         "vscode": "^1.25.0",
-        "azdata": "^1.15.0"
+        "azdata": "^1.21.0"
     },
     "categories": [
         "Other"

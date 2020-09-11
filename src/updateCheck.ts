@@ -9,11 +9,16 @@ let apiconfig: apiConfig.apiconfig = require('../apiconfig.json');
 
 // checking spblitz versioning
 let getblitzversion = async (context?: sqlops.ObjectExplorerContext) => {
-    // var amIUPD = new updatecheck();
+    if(context) { vscode.window.showInformationMessage("context going in to update check: "+context.connectionProfile.id)};
     let updateReturn = await checkForUpdates(context);
     if (updateReturn) {
         if (updateReturn == 'update') {
-            getblitzall();
+            if(context) { vscode.window.showInformationMessage("context after checking for update: "+ context.connectionProfile.id)};
+            if (context) {
+                getblitzall(context);
+            } else {
+                getblitzall();
+            }
         } else if (updateReturn != '') {
             let versionURL = 'https://github.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/releases/tag/' + updateReturn;
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(versionURL));
