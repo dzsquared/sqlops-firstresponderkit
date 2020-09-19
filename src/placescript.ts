@@ -12,7 +12,6 @@ export class placeScript {
         try {
             let connection;
             if (context) {
-                vscode.window.showInformationMessage("context in placescript: "+ context.connectionProfile.id)
                 let connection = context.connectionProfile;
                 this.connectionId = connection.id;
                 this.dbName = context.connectionProfile.databaseName;

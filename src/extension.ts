@@ -10,7 +10,6 @@ import * as runScripts from './runScripts';
 
 export function activate(context: vscode.ExtensionContext) {
     const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
-    vscode.window.showInformationMessage("loaded the updated version 4");
 
     // documentation help link
     let currentBlitz: string = 'sp_Blitz';
@@ -26,15 +25,13 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(docsStatusBar);
     
     function checkSpBlitzType() : void {
-        vscode.window.showInformationMessage("checking editor for spblitz");
-        let blitzes: string[] = ['sp_Blitz', 'sp_BlitzCache', 'sp_BlitzIndex', 'sp_BlitzWho', 'sp_BlitzFirst'
-            , 'sp_BlitzInMemoryOLTP', 'sp_BlitzLock', 'sp_BlitzQueryStore', 'sp_BlitzBackups']; 
+        let blitzes: string[] = ['sp_Blitz', 'sp_BlitzIndex', 'sp_BlitzCache', 'sp_BlitzWho', 'sp_BlitzFirst', 'sp_BlitzLock', 'sp_Blitz\'']; 
         let blitzLabel: string = "";
         if (vscode.window.activeTextEditor) {
             let editorText: string = vscode.window.activeTextEditor.document.getText();
             blitzes.forEach( blitz => {
                 if (editorText.toLowerCase().includes(blitz.toLowerCase())) {
-                    blitzLabel = blitz;
+                    blitzLabel = blitz.replace('\'','');
                 }
             });
         }
@@ -51,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (timeout) {
             clearTimeout(timeout);
         }
-        timeout = setTimeout(checkSpBlitzType, 700);
+        timeout = setTimeout(checkSpBlitzType, 1000); // wait a second to avoid hammering
     }
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(triggerUpdateDocLink));
