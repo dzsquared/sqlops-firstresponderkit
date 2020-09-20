@@ -12,31 +12,31 @@ The current release is available to [download as a .vsix file](https://github.co
 Import a script from the First Responder Kit to a new editor by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Import <some script>`. To import all scripts at once, select `First Responder Kit: Import sp_Blitz and all its friends`.
 
 
-![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_import.gif)
+![Import a Script](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/frk_import.gif)
 
 ### Run
 Already have the current scripts loaded to the database?  Great! Take the shortcut to execution by opening the command palette (`ctrl/command+shift+p`) and selecting an option under `First Responder Kit: Run <some script>`.  Several scripts are available in Object Explorer at Server, Database, and Table nodes.
 
-![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/frk_run.gif)
+![Execute](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/frk_run.gif)
 
 ### Check Your Current Version
 Want to check the sp_Blitz version on a server? You can check your current connection or a server in object explorer and find out if you have the current version.
 
 
-![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/checkFRKversion.gif)
-![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/newVersionAvailable.gif)
+![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/checkFRKversion.gif)
+![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/newVersionAvailable.gif)
 
 ### Documentation Linking in Status Bar
 As you work with sp_Blitz and other First Responder Kit scripts, they will be automatically detected in the query editor and a link to documentation is provided in the status bar.
 
-![Link to Documentation for sp_BlitzIndex](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/documentation-link.png)
+![Link to Documentation for sp_BlitzIndex](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/documentation-link.png)
 
 ### Database Dashboard Tab
 
 Selected elements from the First Responder Kit PowerBI dashboard have been replicated in a dashboard tab.  The elements execute against the current database and require the database configured to contain First Responder Kit historical data.  For more information on data collection configuration, please see: https://www.brentozar.com/first-aid/first-responder-kit-power-bi-dashboard/
 
 
-![Insights Tab](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/insightsTab.png)
+![Insights Tab](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/images/insightsTab.png)
 
 -----------------------------------------------------------------------------------------------------------
 
