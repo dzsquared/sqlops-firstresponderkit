@@ -26,6 +26,11 @@ Want to check the sp_Blitz version on a server? You can check your current conne
 ![Check Version](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/checkFRKversion.gif)
 ![Version Results](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/newVersionAvailable.gif)
 
+### Documentation Linking in Status Bar
+As you work with sp_Blitz and other First Responder Kit scripts, they will be automatically detected in the query editor and a link to documentation is provided in the status bar.
+
+![Link to Documentation for sp_BlitzIndex](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/master/images/documentation-link.png)
+
 ### Database Dashboard Tab
 
 Selected elements from the First Responder Kit PowerBI dashboard have been replicated in a dashboard tab.  The elements execute against the current database and require the database configured to contain First Responder Kit historical data.  For more information on data collection configuration, please see: https://www.brentozar.com/first-aid/first-responder-kit-power-bi-dashboard/
