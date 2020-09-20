@@ -7,13 +7,11 @@ import {placeScript} from './placescript';
 const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
 
 async function spblitzscript(baseUrl: string, fileName: string, context?: sqlops.ObjectExplorerContext) {
-    if(context) { vscode.window.showInformationMessage("context before get: "+ context.connectionProfile.id)};
     let options = {
         uri: baseUrl + fileName,
     };
     console.log('Bringing in the first responder kit from the mothership.');
     const scriptText = await request.get(options);
-    if(context) { vscode.window.showInformationMessage("context after get: "+ context.connectionProfile.id)};
     new placeScript().placescript(fileName, scriptText, context);
 }
 
