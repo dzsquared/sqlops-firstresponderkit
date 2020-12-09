@@ -192,50 +192,85 @@
                 "title": "First Responder Kit",
                 "description": "First Responder Kit Dashboard",
                 "container": {
-                    "widgets-container": [
+                    "nav-section": [
                         {
-                            "name": "Top 3 Wait Times",
-                            "gridItemConfig": {
-                                "sizex": 3,
-                                "sizey": 1
+                            "id": "queryWaits",
+                            "title": "Query-Waits",
+                            "icon": {
+                                "light": "./src/media/loading.svg",
+                                "dark": "./src/media/loading-inverse.svg"
                             },
-                            "widget": {
-                                "sqlops-firstresponderkit.waittimes": {}
+                            "container": {
+                                "widgets-container": [
+                                    {
+                                        "name": "Top 3 Wait Times",
+                                        "gridItemConfig": {
+                                            "sizex": 3,
+                                            "sizey": 1
+                                        },
+                                        "widget": {
+                                            "sqlops-firstresponderkit.waittimes": {}
+                                        }
+                                    },
+                                    {
+                                        "name": "Wait Types",
+                                        "gridItemConfig": {
+                                            "sizex": 1,
+                                            "sizey": 2
+                                        },
+                                        "widget": {
+                                            "sqlops-firstresponderkit.waittypes": {}
+                                        }
+                                    },
+                                    {
+                                        "name": "Resource-Intensive Queries from sp_BlitzCache",
+                                        "gridItemConfig": {
+                                            "sizex": 3,
+                                            "sizey": 1
+                                        },
+                                        "widget": {
+                                            "sqlops-firstresponderkit.blitzcache": {}
+                                        }
+                                    }
+                                ]
                             }
                         },
                         {
-                            "name": "Wait Types",
-                            "gridItemConfig": {
-                                "sizex": 1,
-                                "sizey": 2
+                            "id": "diagnostics",
+                            "title": "diagnostics",
+                            "icon": {
+                                "light": "./src/media/loading.svg",
+                                "dark": "./src/media/loading-inverse.svg"
                             },
-                            "widget": {
-                                "sqlops-firstresponderkit.waittypes": {}
-                            }
-                        },
-                        {
-                            "name": "Quick Diagnosis from sp_BlitzFirst",
-                            "gridItemConfig": {
-                                "sizex": 2,
-                                "sizey": 2
-                            },
-                            "widget": {
-                                "sqlops-firstresponderkit.blitzfirst": {}
-                            }
-                        },
-                        {
-                            "name": "Resource-Intensive Queries from sp_BlitzCache",
-                            "gridItemConfig": {
-                                "sizex": 3,
-                                "sizey": 1
-                            },
-                            "widget": {
-                                "sqlops-firstresponderkit.blitzcache": {}
+                            "container": {
+                                "widgets-container": [
+                                    {
+                                        "name": "Quick Diagnosis from sp_BlitzFirst",
+                                        "gridItemConfig": {
+                                            "sizex": 3,
+                                            "sizey": 2
+                                        },
+                                        "widget": {
+                                            "sqlops-firstresponderkit.blitzfirst": {}
+                                        }
+                                    },
+                                    {
+                                        "name": "Resource-Intensive Queries from sp_BlitzCache",
+                                        "gridItemConfig": {
+                                            "sizex": 3,
+                                            "sizey": 1
+                                        },
+                                        "widget": {
+                                            "sqlops-firstresponderkit.blitzcache": {}
+                                        }
+                                    }
+                                ]
                             }
                         }
+                        
                     ]
                 },
-                "when": "dashboardContext == 'database'"
+                "when": "connectionProvider == 'MSSQL' && dashboardContext == 'database' && !mssql:iscloud"
             }
         ]
     },

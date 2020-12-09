@@ -8,6 +8,9 @@ import {openDocumentation} from './documentationLinking';
 import * as getScripts from './getScripts';
 import * as runScripts from './runScripts';
 
+require('./media/loading.svg');
+require('./media/loading-inverse.svg');
+
 export function activate(context: vscode.ExtensionContext) {
     const baseUrl = "https://raw.githubusercontent.com/BrentOzarULTD/SQL-Server-First-Responder-Kit/main/";
 
