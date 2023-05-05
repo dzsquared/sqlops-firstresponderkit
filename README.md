@@ -102,3 +102,7 @@ Can be raised here: https://github.com/dzsquared/sqlops-firstresponderkit/issues
 
 ## Special Thanks
 A very important thank you to [Brent Ozar Unlimited](https://www.brentozar.com/) for supporting this extension.
+
+## License
+
+This extension is released under the [MIT License](https://raw.githubusercontent.com/dzsquared/sqlops-firstresponderkit/main/LICENSE).
